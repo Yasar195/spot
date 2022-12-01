@@ -2,3 +2,22 @@
     background-image: linear-gradient(to bottom right,rgba(255, 0, 93, 1),rgba(119, 21, 110, 1));
 }
 
+.font{
+    font-size: 0.5rem;
+}
+
+.msg{
+    font-size: 0.7rem
+}
+
+.invisible{
+    opacity: 0;
+    z-index: -10;
+}
+
+.visible{
+    z-index: 10;
+}
+
+
+

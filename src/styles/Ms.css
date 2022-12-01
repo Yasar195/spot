@@ -1,0 +1,16 @@
+.msg{
+    border-bottom-left-radius: 0.60rem;
+    border-top-right-radius: 0.60rem;
+    margin-bottom: 0.4rem;
+}
+
+.hm{
+    background-image: linear-gradient(to bottom right,rgba(255, 0, 93, 1),rgba(119, 21, 110, 1));
+    border-top-left-radius: 0.60rem;
+}
+
+.am{
+    background-color: white;
+    border-bottom-right-radius: 0.60rem;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.3);
+}

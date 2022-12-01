@@ -1,0 +1,12 @@
+.header{
+    height: 10%;
+}
+
+.msgbox{
+    height: 80%;
+    overflow-y: scroll;
+}
+
+.input{
+    height: 10%;
+}

@@ -4,11 +4,14 @@ import Enter from "../components/Enter";
 import '../styles/Home.css';
 import { motion } from "framer-motion";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-
+    
     const [enter, setEnter] = useState(false);
-    const [ip, setIp] = useState()
+    const [name, setName] = useState("")
+    const [ip, setIp] = useState("")
+    const navigate = useNavigate()
 
     const variants = {
         visible: {
@@ -25,16 +28,17 @@ const Home = () => {
     }
 
     useEffect(()=> {
-        axios.get('https://api.ipify.org/?format=json')
-        .then(response => {
-            axios.post('http://localhost:5000/', {params: {ip: response.data}})
-            .then(response => {
-                console.log(response.data)
-            })
-        .   catch(()=> console.log("error while sending data into the server"))
+        const fetchData = async () => {
+            try{
+                const resip = await axios.get('https://api.ipify.org/?format=json')
+                setIp(resip.data.ip)
+            }
+            catch(error){
+                console.log(error.response)
+            }
+        }
 
-        })
-        .catch(()=>console.log("error getting public ip address"))
+        fetchData()
     }, [])
 
     return(
@@ -57,8 +61,8 @@ const Home = () => {
                         <div className="w-2/4 h-4/5 flex items-center justify-evenly flex-col">
                             <p className="text-xs text-gray-300">Before entering</p>
                             <p className="text-gray-50">Give yourself a cool Username</p>
-                            <input className="rounded  border-0 outline-0 py-1.5 w-2/4 px-3 text-xs" type="text" placeholder="John Doe"/>
-                            <button className="rounded btn p-1 bg-white text-xs text-white w-2/4 border-0 outline-0">ENTER</button>
+                            <input onChange={(event) => setName(event.target.value)} className="rounded  border-0 outline-0 py-1.5 w-2/4 px-3 text-xs" type="text" placeholder="John Doe"/>
+                            <button onClick={()=> navigate("/peertopeer", {state: {name: name, ip: ip}})} className="rounded btn p-1 bg-white text-xs text-white w-2/4 border-0 outline-0">ENTER</button>
                             <p className="cursor-pointer text-gray-300 text-xs underline" onClick={()=> handleEnter()}>Go back</p>
                         </div>
                     </motion.div>
